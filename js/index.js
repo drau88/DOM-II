@@ -5,7 +5,7 @@ const welcomeHeader = document.querySelector('.container .intro h2');
 const mainHeader = document.querySelector('.logo-heading');
 const mapImg = document.querySelector('.container .img-content img');
 const adventureImg = document.querySelector('.container .img-content:nth-of-type(1) img');
-const adventureP = document.getElementById('adventureH');
+const adventureH = document.getElementById('adventureH');
 const body = document.querySelector('body');
 const text = document.querySelectorAll('p');
 // Doing a thing with the bus (make it go right and back on mouseover.. also the heading underneath tells you the bus is getting away).
@@ -59,8 +59,12 @@ document.addEventListener('click', function border(event){
 // Doing a thing with the adventure heading (Changes the adventure section heading to reflect the thieving nature of a person dragging the adventure image away. )
 document.addEventListener('drag', function adventureThief(event){
     if (event.target === adventureImg) {
-        adventureP.textContent = "Hey, stop trying to steal my adventure!"
+        adventureH.textContent = "Hey, stop trying to steal my adventure!"
     } 
+})
+
+adventureH.addEventListener('copy', function doubleThief(){
+    adventureH.textContent = "Now you're stealing my text too?!";
 })
 
 // Alert on page load
@@ -81,9 +85,11 @@ window.addEventListener('resize', function changeBG() {
     }
 })
 
+// Key up and Keydown events with Escape Key
+
 document.addEventListener('keydown', function noEscape (event) {
    Array.from(text);
-    if (event.key = 'Escape'){
+    if (event.key === 'Escape'){
         text.forEach (paragraph => paragraph.textContent = "There is no escaping the funbus!");
         text.forEach (paragraph => paragraph.style.fontSize = '10rem');
         text.forEach (paragraph => paragraph.style.backgroundColor = 'red');
@@ -94,7 +100,14 @@ document.addEventListener('keyup', function youEscaped(event){
     Array.from(text);
     if (event.key === 'Escape'){
         text.forEach (paragraph => paragraph.textContent = "Oh, I guess you escaped.");
-        // text.forEach (paragraph => paragraph.style.fontSize = '10rem');
         text.forEach (paragraph => paragraph.style.backgroundColor = 'blue');
     }
+})
+
+// Preventing links from default behavior.
+
+Array.from(document.links).forEach(link => {
+    link.addEventListener('click', function(event){
+        event.preventDefault();
+    })
 })
