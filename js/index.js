@@ -4,7 +4,9 @@ const funBus = document.querySelector('.container .intro img');
 const welcomeHeader = document.querySelector('.container .intro h2');
 const mainHeader = document.querySelector('.logo-heading');
 const mapImg = document.querySelector('.container .img-content img');
-
+const adventureImg = document.querySelector('.container .img-content:nth-of-type(1) img');
+const adventureP = document.getElementById('adventureH');
+console.log(adventureP);
 // Doing a thing with the bus (make it go right and back on mouseover.. also the heading underneath tells you the bus is getting away).
 
 document.addEventListener('mouseover', function goRight(event){
@@ -36,4 +38,27 @@ document.addEventListener('dblclick', function noMap(event){
         mapImg.style.display = '';
         console.log('Oh, it came back.');
     }
+})
+
+
+// Doing a thing with the adventure image (changes border of the adventure image on click based on the results of a random number generator)
+document.addEventListener('click', function border(event){
+    if (event.target === adventureImg) {
+        const random = Math.floor((Math.random() * 3) + 1);
+        if (random === 1){
+        adventureImg.style.border = '5px solid red';
+        } else if (random === 2) {
+            adventureImg.style.border = '10px solid blue';
+        } else {
+            adventureImg.style.border = '15px dotted green';
+        }
+    }
+})
+
+// Doing a thing with the adventure heading
+document.addEventListener('drag', function adventureThief(event){
+    if (event.target === adventureImg) {
+        adventureP.textContent = "Hey, stop trying to steal my adventure!"
+    } 
+    
 })
