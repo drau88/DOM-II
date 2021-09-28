@@ -6,7 +6,8 @@ const mainHeader = document.querySelector('.logo-heading');
 const mapImg = document.querySelector('.container .img-content img');
 const adventureImg = document.querySelector('.container .img-content:nth-of-type(1) img');
 const adventureP = document.getElementById('adventureH');
-console.log(adventureP);
+const body = document.querySelector('body');
+const text = document.querySelectorAll('p');
 // Doing a thing with the bus (make it go right and back on mouseover.. also the heading underneath tells you the bus is getting away).
 
 document.addEventListener('mouseover', function goRight(event){
@@ -55,10 +56,45 @@ document.addEventListener('click', function border(event){
     }
 })
 
-// Doing a thing with the adventure heading
+// Doing a thing with the adventure heading (Changes the adventure section heading to reflect the thieving nature of a person dragging the adventure image away. )
 document.addEventListener('drag', function adventureThief(event){
     if (event.target === adventureImg) {
         adventureP.textContent = "Hey, stop trying to steal my adventure!"
     } 
-    
+})
+
+// Alert on page load
+window.addEventListener('load', function warnThieves(){
+    alert("Don't steal my boat!");
+})
+
+
+// Change body background color based on RNG when resizing.
+window.addEventListener('resize', function changeBG() {
+    const random2 = Math.floor((Math.random() * 3) + 1);
+    if (random2 === 1){
+        body.style.backgroundColor = 'red';
+    } else if (random2 === 2){
+        body.style.backgroundColor = 'green';
+    } else {
+        body.style.backgroundColor = 'blue';
+    }
+})
+
+document.addEventListener('keydown', function noEscape (event) {
+   Array.from(text);
+    if (event.key = 'Escape'){
+        text.forEach (paragraph => paragraph.textContent = "There is no escaping the funbus!");
+        text.forEach (paragraph => paragraph.style.fontSize = '10rem');
+        text.forEach (paragraph => paragraph.style.backgroundColor = 'red');
+    }
+})
+
+document.addEventListener('keyup', function youEscaped(event){
+    Array.from(text);
+    if (event.key === 'Escape'){
+        text.forEach (paragraph => paragraph.textContent = "Oh, I guess you escaped.");
+        // text.forEach (paragraph => paragraph.style.fontSize = '10rem');
+        text.forEach (paragraph => paragraph.style.backgroundColor = 'blue');
+    }
 })
